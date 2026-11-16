@@ -1,0 +1,9 @@
+{
+  "appId": "com.serviohq.app",
+  "appName": "Servio",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "capacitor"
+  }
+}

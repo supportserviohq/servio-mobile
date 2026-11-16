@@ -1,0 +1,19 @@
+{
+  "name": "servio-mobile",
+  "version": "1.20.0",
+  "description": "Servio (by ServioHQ) \u2014 Field Service App & HQ Dispatch Console",
+  "main": "www/index.html",
+  "scripts": {
+    "sync": "npx cap sync",
+    "open:android": "npx cap open android",
+    "open:ios": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}
