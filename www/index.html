@@ -217,7 +217,7 @@
           <div class="leading-none">
             <div class="flex items-center gap-1">
               <span class="font-black tracking-tight text-xs sm:text-sm">Servio</span>
-              <span class="hidden lg:inline-block text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold">by ServioHQ • v1.20</span>
+              <span class="hidden lg:inline-block text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold">by ServioHQ • v1.26</span>
             </div>
             <p class="text-[9px] text-slate-400 hidden xl:block mt-0.5">ServioHQ Field &amp; Dispatch Platform</p>
           </div>
@@ -343,7 +343,6 @@
       <div id="quick-warranty-drawer" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs space-y-2.5">
         <div id="quick-warranty-drawer-content"></div>
       </div>
-      <!-- Collapsible Quick Membership Perks & Visit Counter Drawer -->
       <div id="quick-membership-drawer" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs space-y-2">
         <div id="quick-membership-drawer-content"></div>
       </div>
@@ -1216,10 +1215,6 @@
               </div>
 
               <div id="of-inv-fields-drawer" class="space-y-2.5 pt-2 border-t border-slate-700/80 text-xs">
-                <div id="of-inv-member-perks-strip" class="hidden rounded-xl p-2.5 bg-purple-950/60 border border-purple-500/50 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px]">
-                  <span id="of-inv-member-perks-text" class="text-purple-200 font-bold">👑 Active Member Perks Applied</span>
-                  <button type="button" onclick="applyOfficeDispatchMemberPerks(true)" class="px-2 py-0.5 rounded bg-purple-500 text-slate-950 font-black">Re-Apply Perks</button>
-                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 font-mono text-[10px]">
                   <button type="button" id="of-doc-mode-ESTIMATE" onclick="setOfficeFormDocStage('ESTIMATE')"
                     class="py-2 px-2 rounded-lg font-black bg-amber-500 text-slate-950 shadow">
@@ -1316,76 +1311,6 @@
     <!-- OFFICE SUB-TAB 2: CUSTOMERS CRM (ADD / EDIT SAVED CUSTOMERS)      -->
     <!-- ================================================================= -->
     <div id="office-subtab-customers" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <!-- FULL-WIDTH COMPANY MEMBERSHIP PLAN BUILDER & TIER SETTINGS -->
-      <div class="lg:col-span-12 theme-card rounded-3xl p-5 space-y-4 border-t-4 border-t-purple-500 shadow-xl">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-3">
-          <div>
-            <span class="text-[10px] font-mono uppercase text-purple-400 font-black">Recurring Revenue &amp; Preventative Maintenance Contracts</span>
-            <h3 class="text-lg font-black">👑 Company Membership Plan Builder &amp; Pricing Tiers</h3>
-            <p class="text-xs theme-text-muted mt-0.5">Define custom membership plans, billing cycles, included annual PM visits, and automatic member discounts for your company.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <span id="membership-active-count-pill" class="px-3 py-1 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/40 font-mono text-xs font-black">0 Active Members</span>
-            <button type="button" onclick="syncMembershipPlansWithSupabase(true)" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-mono text-xs font-bold">
-              ☁️ Sync Plans
-            </button>
-          </div>
-        </div>
-
-        <!-- Create / Edit Company Plan Form -->
-        <div class="theme-subcard rounded-2xl p-4 space-y-3 border border-purple-500/40 text-xs">
-          <div class="flex items-center justify-between">
-            <span id="mplan-form-label" class="text-[10px] font-mono uppercase text-purple-300 font-black">➕ Add or Update Company Membership Tier</span>
-            <button type="button" onclick="resetCompanyPlanForm()" class="text-[10px] font-mono text-slate-400 underline">Clear Form</button>
-          </div>
-          <input type="hidden" id="mplan-edit-id" value="" />
-          <div class="grid grid-cols-1 sm:grid-cols-6 gap-2.5">
-            <div class="sm:col-span-2">
-              <label class="block text-[10px] font-mono theme-text-muted mb-1">Plan Name *</label>
-              <input id="mplan-name" type="text" placeholder="e.g., Gold Bi-Annual PM" class="theme-input w-full rounded-xl px-3 py-2 font-bold" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-mono theme-text-muted mb-1">Price ($) *</label>
-              <input id="mplan-price" type="number" step="0.01" min="0" placeholder="349.00" class="theme-input w-full rounded-xl px-3 py-2 font-mono font-black text-emerald-400" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-mono theme-text-muted mb-1">Billing Cycle</label>
-              <select id="mplan-cycle" class="theme-input w-full rounded-xl px-2.5 py-2 font-bold">
-                <option value="Annual">Annual</option>
-                <option value="Bi-Annual">Bi-Annual</option>
-                <option value="Quarterly">Quarterly</option>
-                <option value="Monthly">Monthly</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-[10px] font-mono theme-text-muted mb-1">PM Visits / Yr</label>
-              <input id="mplan-visits" type="number" min="1" max="12" value="2" class="theme-input w-full rounded-xl px-3 py-2 font-mono font-black text-amber-300 text-center" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-mono theme-text-muted mb-1">Parts Discount (%)</label>
-              <input id="mplan-discount" type="number" min="0" max="100" value="10" class="theme-input w-full rounded-xl px-3 py-2 font-mono font-black text-cyan-300 text-center" />
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <div class="flex flex-wrap items-center gap-4">
-              <label class="flex items-center gap-1.5 font-bold text-slate-200 cursor-pointer">
-                <input id="mplan-priority" type="checkbox" checked class="rounded border-slate-600 accent-purple-500 w-4 h-4" />
-                <span>⚡ Priority Storm Outage Dispatch</span>
-              </label>
-              <label class="flex items-center gap-1.5 font-bold text-slate-200 cursor-pointer">
-                <input id="mplan-waive-diag" type="checkbox" class="rounded border-slate-600 accent-emerald-500 w-4 h-4" />
-                <span>🛡️ Waive Emergency Diagnostic Fee</span>
-              </label>
-            </div>
-            <button type="button" onclick="saveCompanyMembershipPlan()" class="glove-btn px-4 py-2 rounded-xl bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-xs shadow-lg">
-              💾 Save Membership Plan Tier
-            </button>
-          </div>
-        </div>
-
-        <!-- Active Company Plans Grid -->
-        <div id="company-membership-plans-grid" class="grid grid-cols-1 md:grid-cols-3 gap-3"></div>
-      </div>
       <div class="lg:col-span-5 theme-card rounded-3xl p-5 space-y-4 border-t-4 border-t-emerald-500">
         <div class="flex items-center justify-between border-b border-slate-700 pb-3">
           <div>
@@ -1524,6 +1449,72 @@
             💾 Save Customer &amp; SMS Preference to CRM
           </button>
         </form>
+
+        <!-- COMPANY MEMBERSHIP PLAN BUILDER (INSIDE ADD/EDIT SUBCATEGORY) -->
+        <div class="pt-4 mt-4 border-t-2 border-slate-700/80 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-purple-400 font-black">Company PM Tiers &amp; Pricing</span>
+              <h4 class="text-sm font-black">👑 Company Membership Plan Builder</h4>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="membership-active-count-pill" class="px-2 py-0.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/40 font-mono text-[10px] font-black">0 Active</span>
+              <button type="button" onclick="syncMembershipPlansWithSupabase(true)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-mono text-[10px] font-bold">
+                ☁️ Sync
+              </button>
+            </div>
+          </div>
+
+          <div class="theme-subcard rounded-2xl p-3.5 space-y-2.5 border border-purple-500/40 text-xs">
+            <div class="flex items-center justify-between">
+              <span id="mplan-form-label" class="text-[10px] font-mono uppercase text-purple-300 font-black">➕ Create / Edit Plan Tier</span>
+              <button type="button" onclick="resetCompanyPlanForm()" class="text-[10px] font-mono text-slate-400 underline">Clear</button>
+            </div>
+            <input type="hidden" id="mplan-edit-id" value="" />
+            <div class="grid grid-cols-2 gap-2">
+              <div class="col-span-2">
+                <label class="block text-[10px] font-mono theme-text-muted mb-0.5">Plan Name *</label>
+                <input id="mplan-name" type="text" placeholder="e.g., Gold Bi-Annual PM" class="theme-input w-full rounded-xl px-2.5 py-1.5 font-bold text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono theme-text-muted mb-0.5">Price ($) *</label>
+                <input id="mplan-price" type="number" step="0.01" min="0" placeholder="349.00" class="theme-input w-full rounded-xl px-2.5 py-1.5 font-mono font-black text-emerald-400 text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono theme-text-muted mb-0.5">Billing Cycle</label>
+                <select id="mplan-cycle" class="theme-input w-full rounded-xl px-2 py-1.5 font-bold text-xs">
+                  <option value="Annual">Annual</option>
+                  <option value="Bi-Annual">Bi-Annual</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono theme-text-muted mb-0.5">PM Visits / Yr</label>
+                <input id="mplan-visits" type="number" min="1" max="12" value="2" class="theme-input w-full rounded-xl px-2.5 py-1.5 font-mono font-black text-amber-300 text-center text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono theme-text-muted mb-0.5">Parts Disc (%)</label>
+                <input id="mplan-discount" type="number" min="0" max="100" value="10" class="theme-input w-full rounded-xl px-2.5 py-1.5 font-mono font-black text-cyan-300 text-center text-xs" />
+              </div>
+            </div>
+            <div class="space-y-1.5 pt-1">
+              <label class="flex items-center gap-1.5 font-bold text-slate-200 cursor-pointer">
+                <input id="mplan-priority" type="checkbox" checked class="rounded border-slate-600 accent-purple-500 w-3.5 h-3.5" />
+                <span>⚡ Priority Storm Outage Dispatch</span>
+              </label>
+              <label class="flex items-center gap-1.5 font-bold text-slate-200 cursor-pointer">
+                <input id="mplan-waive-diag" type="checkbox" class="rounded border-slate-600 accent-emerald-500 w-3.5 h-3.5" />
+                <span>🛡️ Waive Emergency Diagnostic Fee</span>
+              </label>
+            </div>
+            <button type="button" onclick="saveCompanyMembershipPlan()" class="glove-btn w-full rounded-xl bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-xs py-2.5 shadow">
+              💾 Save Membership Plan Tier
+            </button>
+          </div>
+
+          <div id="company-membership-plans-grid" class="grid grid-cols-1 gap-2.5"></div>
+        </div>
       </div>
 
       <div class="lg:col-span-7 theme-card rounded-3xl p-5 space-y-3.5 border-t-4 border-t-cyan-500">
@@ -18212,48 +18203,115 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
 
   </script>
 
-<!-- ================= SERVIO_MEMBERSHIP_V121_INSTALLED ================= -->
+<!-- ================= SERVIO_UNIFIED_V126_ENGINE ================= -->
+<div id="servio-auth-gate-overlay" class="fixed inset-0 z-[200] bg-slate-950 flex items-center justify-center p-4 overflow-y-auto">
+  <div class="theme-card rounded-3xl max-w-md w-full p-6 space-y-5 border-2 border-amber-500/70 shadow-2xl my-auto">
+    <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+      <div class="w-11 h-11 rounded-2xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-xl shadow-lg shrink-0">⚡</div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-lg font-black text-white tracking-tight">Servio</h1>
+          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">v1.26 Live</span>
+        </div>
+        <p class="text-xs theme-text-muted">Field Service &amp; HQ Dispatch Portal</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 font-mono text-xs">
+      <button type="button" id="ag-tab-signin" onclick="switchAuthGateMode('signin')" class="py-2 rounded-lg font-black bg-amber-500 text-slate-950 shadow">
+        🔐 Sign In
+      </button>
+      <button type="button" id="ag-tab-signup" onclick="switchAuthGateMode('signup')" class="py-2 rounded-lg font-bold text-slate-300 hover:text-white">
+        ➕ Create Account
+      </button>
+    </div>
+
+    <div id="ag-status-msg" class="hidden rounded-xl p-3 text-xs font-mono border"></div>
+
+    <form onsubmit="handleAuthGateSubmit(event)" class="space-y-3 text-xs">
+      <div id="ag-signup-extra-fields" class="hidden space-y-3">
+        <div>
+          <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Full Name *</label>
+          <input id="ag-fullname" type="text" placeholder="e.g., Julie Ivester or Mike R." class="theme-input w-full rounded-xl px-3 py-2.5 font-bold text-xs" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Account Role *</label>
+            <select id="ag-role" onchange="toggleAuthTechPicker(this.value)" class="theme-input w-full rounded-xl px-2.5 py-2.5 font-bold text-xs text-amber-300">
+              <option value="admin">🖥️ Office Admin / HQ</option>
+              <option value="tech">📱 Field Technician</option>
+            </select>
+          </div>
+          <div id="ag-tech-picker-wrap" class="hidden">
+            <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Assigned Truck *</label>
+            <select id="ag-tech-id" class="theme-input w-full rounded-xl px-2.5 py-2.5 font-bold text-xs text-cyan-300">
+              <option value="tech-mike">Mike R. (Truck #14)</option>
+              <option value="tech-sarah">Sarah L. (Truck #08)</option>
+              <option value="tech-dave">Dave K. (Truck #21)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Work Email *</label>
+        <input id="ag-email" type="email" required placeholder="you@company.com" class="theme-input w-full rounded-xl px-3 py-2.5 font-mono text-xs" />
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Password *</label>
+        <input id="ag-password" type="password" required minlength="6" placeholder="••••••••" class="theme-input w-full rounded-xl px-3 py-2.5 font-mono text-xs" />
+      </div>
+
+      <button id="ag-submit-btn" type="submit" class="glove-btn w-full rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm py-3.5 shadow-xl">
+        🔐 Sign In to Servio
+      </button>
+    </form>
+
+    <div class="pt-3 border-t border-slate-800 space-y-2">
+      <div class="text-[10px] font-mono uppercase text-slate-400 text-center font-bold">⚡ Quick Role Switcher (Instant Access)</div>
+      <div class="grid grid-cols-2 gap-2">
+        <button type="button" onclick="quickLoginRolePreview('admin', 'ALL', 'Office Admin')"
+          class="py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-black shadow">
+          🖥️ Open Office HQ
+        </button>
+        <button type="button" onclick="quickLoginRolePreview('tech', 'tech-mike', 'Mike R. (#14)')"
+          class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-mono text-xs font-bold">
+          📱 Open Tech (#14)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   (function() {
+    const AUTH_SESSION_KEY = 'servio_active_role_session_v126';
+    let authGateMode = 'signin';
+    let autoApplyMemberPerks = true;
+
     const DEFAULT_COMPANY_PLANS = [
-      {
-        id: 'plan-silver-annual',
-        name: 'Silver Annual PM',
-        price: 249.00,
-        billing_cycle: 'Annual',
-        visits_included: 1,
-        discount_percent: 5,
-        priority_service: true,
-        waive_diagnostic: false
-      },
-      {
-        id: 'plan-gold-biannual',
-        name: 'Gold Bi-Annual PM',
-        price: 399.00,
-        billing_cycle: 'Bi-Annual',
-        visits_included: 2,
-        discount_percent: 10,
-        priority_service: true,
-        waive_diagnostic: true
-      },
-      {
-        id: 'plan-platinum-comm',
-        name: 'Commercial Quarterly PM',
-        price: 895.00,
-        billing_cycle: 'Quarterly',
-        visits_included: 4,
-        discount_percent: 15,
-        priority_service: true,
-        waive_diagnostic: true
-      }
+      { id: 'plan-silver-annual', name: 'Silver Annual PM', price: 249.00, billing_cycle: 'Annual', visits_included: 1, discount_percent: 5, priority_service: true, waive_diagnostic: false },
+      { id: 'plan-gold-biannual', name: 'Gold Bi-Annual PM', price: 399.00, billing_cycle: 'Bi-Annual', visits_included: 2, discount_percent: 10, priority_service: true, waive_diagnostic: true },
+      { id: 'plan-platinum-comm', name: 'Commercial Quarterly PM', price: 895.00, billing_cycle: 'Quarterly', visits_included: 4, discount_percent: 15, priority_service: true, waive_diagnostic: true }
     ];
+
+    function getSbClient() {
+      if (window.supabaseClient) return window.supabaseClient;
+      const url = document.getElementById('sb-cfg-url')?.value || 'https://oowfquqrhqshthkryueb.supabase.co';
+      const key = document.getElementById('sb-cfg-key')?.value || 'sb_publishable_KEAzhMN_puMXxhc3eamHYQ_Gwbdai3D';
+      if (window.supabase && window.supabase.createClient) {
+        window.supabaseClient = window.supabase.createClient(url, key);
+        return window.supabaseClient;
+      }
+      return null;
+    }
 
     function ensureMembershipState() {
       if (!window.state) return;
       if (!Array.isArray(state.membershipPlans) || state.membershipPlans.length === 0) {
         state.membershipPlans = JSON.parse(JSON.stringify(DEFAULT_COMPANY_PLANS));
       }
-      // Seed demo memberships onto initial customers if not set yet
       if (Array.isArray(state.customers)) {
         state.customers.forEach((c, idx) => {
           if (typeof c.membershipStatus === 'undefined') {
@@ -18301,57 +18359,27 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       ) || null;
     }
 
-    function getSupabaseClientInstance() {
-      if (window.supabaseClient) return window.supabaseClient;
-      const url = document.getElementById('sb-cfg-url')?.value || 'https://oowfquqrhqshthkryueb.supabase.co';
-      const key = document.getElementById('sb-cfg-key')?.value || 'sb_publishable_KEAzhMN_puMXxhc3eamHYQ_Gwbdai3D';
-      if (window.supabase && window.supabase.createClient) {
-        window.supabaseClient = window.supabase.createClient(url, key);
-        return window.supabaseClient;
-      }
-      return null;
-    }
-
     window.syncMembershipPlansWithSupabase = async function(showNotification) {
       ensureMembershipState();
-      const client = getSupabaseClientInstance();
+      const client = getSbClient();
       if (!client) return;
       try {
         const { data, error } = await client.from('membership_plans').select('*').order('price', { ascending: true });
-        if (!error && Array.isArray(data)) {
-          if (data.length > 0) {
-            state.membershipPlans = data.map(p => ({
-              id: p.id,
-              name: p.name,
-              price: Number(p.price || 0),
-              billing_cycle: p.billing_cycle || 'Annual',
-              visits_included: Number(p.visits_included || 1),
-              discount_percent: Number(p.discount_percent || 0),
-              priority_service: !!p.priority_service,
-              waive_diagnostic: !!p.waive_diagnostic
-            }));
-          } else {
-            // Push starter plans to Supabase if table is empty
-            for (const plan of state.membershipPlans) {
-              await client.from('membership_plans').insert([{
-                name: plan.name,
-                price: plan.price,
-                billing_cycle: plan.billing_cycle,
-                visits_included: plan.visits_included,
-                discount_percent: plan.discount_percent,
-                priority_service: plan.priority_service,
-                waive_diagnostic: plan.waive_diagnostic
-              }]);
-            }
-          }
+        if (!error && Array.isArray(data) && data.length > 0) {
+          state.membershipPlans = data.map(p => ({
+            id: p.id,
+            name: p.name,
+            price: Number(p.price || 0),
+            billing_cycle: p.billing_cycle || 'Annual',
+            visits_included: Number(p.visits_included || 1),
+            discount_percent: Number(p.discount_percent || 0),
+            priority_service: !!p.priority_service,
+            waive_diagnostic: !!p.waive_diagnostic
+          }));
           renderMembershipBuilderAndBadges();
-          if (showNotification && window.showToast) {
-            showToast('☁️ Synced Company Membership Plans with Supabase!');
-          }
+          if (showNotification && window.showToast) showToast('☁️ Synced Membership Plans with Supabase!');
         }
-      } catch (err) {
-        console.warn('Supabase membership sync notice:', err);
-      }
+      } catch (e) {}
     };
 
     window.resetCompanyPlanForm = function() {
@@ -18365,7 +18393,7 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       const prio = document.getElementById('mplan-priority'); if (prio) prio.checked = true;
       const waive = document.getElementById('mplan-waive-diag'); if (waive) waive.checked = false;
       const lbl = document.getElementById('mplan-form-label');
-      if (lbl) lbl.textContent = '➕ Add or Update Company Membership Tier';
+      if (lbl) lbl.textContent = '➕ Create / Edit Plan Tier';
     };
 
     window.editCompanyMembershipPlan = function(planId) {
@@ -18381,7 +18409,7 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       document.getElementById('mplan-priority').checked = !!plan.priority_service;
       document.getElementById('mplan-waive-diag').checked = !!plan.waive_diagnostic;
       const lbl = document.getElementById('mplan-form-label');
-      if (lbl) lbl.textContent = '✏️ Editing Plan Tier: ' + plan.name;
+      if (lbl) lbl.textContent = '✏️ Editing: ' + plan.name;
     };
 
     window.saveCompanyMembershipPlan = async function() {
@@ -18395,54 +18423,33 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       const priority_service = !!document.getElementById('mplan-priority')?.checked;
       const waive_diagnostic = !!document.getElementById('mplan-waive-diag')?.checked;
 
-      if (!name) {
-        if (window.showToast) showToast('⚠️ Please enter a Membership Plan name.');
-        return;
-      }
+      if (!name) return window.showToast && showToast('⚠️ Enter a Membership Plan name.');
 
-      const planObj = {
-        id: editId || ('plan-' + Date.now()),
-        name,
-        price,
-        billing_cycle,
-        visits_included,
-        discount_percent,
-        priority_service,
-        waive_diagnostic
-      };
+      const planObj = { id: editId || ('plan-' + Date.now()), name, price, billing_cycle, visits_included, discount_percent, priority_service, waive_diagnostic };
+      const idx = state.membershipPlans.findIndex(p => String(p.id) === String(editId));
+      if (idx >= 0) state.membershipPlans[idx] = planObj;
+      else state.membershipPlans.push(planObj);
 
-      const existingIdx = state.membershipPlans.findIndex(p => String(p.id) === String(editId));
-      if (existingIdx >= 0) {
-        state.membershipPlans[existingIdx] = planObj;
-      } else {
-        state.membershipPlans.push(planObj);
-      }
-
-      const client = getSupabaseClientInstance();
+      const client = getSbClient();
       if (client) {
-        try {
-          await client.from('membership_plans').insert([{
-            name, price, billing_cycle, visits_included, discount_percent, priority_service, waive_diagnostic
-          }]);
-        } catch (e) {}
+        try { await client.from('membership_plans').insert([{ name, price, billing_cycle, visits_included, discount_percent, priority_service, waive_diagnostic }]); } catch (e) {}
       }
-
       resetCompanyPlanForm();
       if (window.saveState) saveState();
       renderMembershipBuilderAndBadges();
-      if (window.showToast) showToast('👑 Saved Company Membership Plan: ' + name);
+      if (window.showToast) showToast('👑 Saved Membership Plan: ' + name);
     };
 
     window.deleteCompanyMembershipPlan = async function(planId) {
       ensureMembershipState();
       state.membershipPlans = state.membershipPlans.filter(p => String(p.id) !== String(planId));
-      const client = getSupabaseClientInstance();
+      const client = getSbClient();
       if (client) {
         try { await client.from('membership_plans').delete().eq('id', planId); } catch (e) {}
       }
       if (window.saveState) saveState();
       renderMembershipBuilderAndBadges();
-      if (window.showToast) showToast('🗑️ Removed membership plan tier');
+      if (window.showToast) showToast('🗑️ Removed membership plan');
     };
 
     window.handleCrmPlanDropdownChange = function(planId) {
@@ -18475,7 +18482,6 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       else renewal.setFullYear(renewal.getFullYear() + 1);
 
       if (statusEl) statusEl.value = 'Active';
-      if (usedEl && Number(usedEl.value) === 0) usedEl.value = 0;
       if (totalEl) totalEl.value = plan.visits_included;
       if (discEl) discEl.value = plan.discount_percent;
       if (renEl && !renEl.value) renEl.value = renewal.toISOString().split('T')[0];
@@ -18490,429 +18496,142 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       ensureMembershipState();
       const cust = state.customers.find(c => c.id === custId);
       if (!cust) return;
-      const nextUsed = Math.max(0, Number(cust.visitsUsed || 0) + Number(delta));
-      cust.visitsUsed = nextUsed;
-
-      const client = getSupabaseClientInstance();
-      if (client) {
-        try {
-          await client.from('customers').update({ visits_used: nextUsed }).eq('name', cust.name);
-        } catch (e) {}
-      }
-
+      cust.visitsUsed = Math.max(0, Number(cust.visitsUsed || 0) + Number(delta));
       if (window.saveState) saveState();
       renderMembershipBuilderAndBadges();
-      if (window.showToast) {
-        showToast('👑 ' + cust.name + ': PM Visits Used updated to ' + cust.visitsUsed + ' of ' + (cust.visitsTotal || 1));
-      }
+      if (window.showToast) showToast('👑 ' + cust.name + ': Visits Used ' + cust.visitsUsed + '/' + (cust.visitsTotal || 1));
     };
 
     window.openTechMembershipDrawer = function() {
       const drawer = document.getElementById('quick-membership-drawer');
-      if (!drawer) return;
-      drawer.classList.toggle('hidden');
-      renderTechHeaderMembership();
-    };
-
-    function renderTechHeaderMembership() {
-      ensureMembershipState();
-      const job = window.getActiveJob ? getActiveJob() : null;
-      if (!job) return;
-      const cust = getCustomerForJob(job);
-      const badge = document.getElementById('mobile-active-membership-badge');
-      const drawerContent = document.getElementById('quick-membership-drawer-content');
-
-      const isActive = cust && cust.membershipStatus === 'Active';
-      if (badge) {
-        if (isActive) {
-          badge.textContent = '👑 ' + (cust.membershipPlanName || 'MEMBER') + ' (' + (cust.visitsUsed || 0) + '/' + (cust.visitsTotal || 1) + ')';
-          badge.className = 'cursor-pointer text-[10px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/50';
-        } else {
-          badge.textContent = '👑 NO PLAN';
-          badge.className = 'cursor-pointer text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700';
-        }
-      }
-
-      if (drawerContent) {
-        if (!cust || !isActive) {
-          drawerContent.innerHTML = `
-            <div class="theme-subcard rounded-xl p-3 flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <div class="text-xs font-black text-slate-200">No Active PM Membership on File</div>
-                <div class="text-[11px] theme-text-muted">Enroll ${job.customer} in a Company PM Plan to unlock automatic parts discounts &amp; visit tracking.</div>
-              </div>
-              <select onchange="quickEnrollJobCustomerInPlan('${job.id}', this.value)" class="theme-input rounded-xl px-2.5 py-1.5 text-xs font-bold text-purple-300">
-                <option value="">+ Quick-Enroll in Plan...</option>
-                ${state.membershipPlans.map(p => `<option value="${p.id}">${p.name} (${Number(p.price).toFixed(0)}/${p.billing_cycle})</option>`).join('')}
-              </select>
-            </div>
-          `;
-        } else {
-          drawerContent.innerHTML = `
-            <div class="theme-subcard rounded-xl p-3 space-y-2 border border-purple-500/40 font-mono">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <span class="text-[10px] uppercase text-purple-300 font-black">👑 Active Plan: ${cust.membershipPlanName}</span>
-                  <div class="text-xs font-bold text-white mt-0.5">
-                    PM Visits Used: <strong class="text-amber-300">${cust.visitsUsed || 0} of ${cust.visitsTotal || 1}</strong> •
-                    Parts Discount: <strong class="text-emerald-400">${cust.memberDiscount || 0}% OFF</strong> •
-                    Renews: <strong class="text-cyan-300">${cust.membershipRenewalDate || 'Annual'}</strong>
-                  </div>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <button type="button" onclick="adjustCustomerMembershipVisit('${cust.id}', -1)" class="px-2 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">−1</button>
-                  <button type="button" onclick="adjustCustomerMembershipVisit('${cust.id}', 1)" class="px-2.5 py-1 rounded-lg bg-purple-500 hover:bg-purple-400 text-slate-950 text-xs font-black shadow">+1 Log PM Visit</button>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-      }
-    }
-
-    window.quickEnrollJobCustomerInPlan = function(jobId, planId) {
-      if (!planId) return;
-      ensureMembershipState();
-      const job = state.jobs.find(j => j.id === jobId) || getActiveJob();
-      const plan = state.membershipPlans.find(p => String(p.id) === String(planId));
-      if (!job || !plan) return;
-
-      let cust = getCustomerForJob(job);
-      if (!cust) {
-        cust = {
-          id: 'cust-' + Date.now(),
-          name: job.customer,
-          phone: job.phone || '',
-          address: job.address || '',
-          gate: job.gateCode || '',
-          tier: job.tier || 'Residential',
-          model: job.model || 'Generac Guardian 24kW',
-          serial: job.serial || '',
-          engineSn: job.engineSn || '',
-          atsSn: job.atsSn || '',
-          warrantyStatus: job.warrantyStatus || 'ACTIVE - PARTS & LABOR'
-        };
-        state.customers.unshift(cust);
-      }
-
-      const renewal = new Date();
-      renewal.setFullYear(renewal.getFullYear() + 1);
-      cust.membershipPlanId = plan.id;
-      cust.membershipPlanName = plan.name;
-      cust.membershipStatus = 'Active';
-      cust.membershipRenewalDate = renewal.toISOString().split('T')[0];
-      cust.visitsUsed = 1;
-      cust.visitsTotal = plan.visits_included;
-      cust.memberDiscount = plan.discount_percent;
-      cust.priorityService = !!plan.priority_service;
-      cust.waiveDiagnostic = !!plan.waive_diagnostic;
-
-      if (window.saveState) saveState();
+      if (drawer) drawer.classList.toggle('hidden');
       renderMembershipBuilderAndBadges();
-      if (window.showToast) showToast('👑 Enrolled ' + cust.name + ' in ' + plan.name + '!');
     };
 
     function renderMembershipBuilderAndBadges() {
       ensureMembershipState();
-
-      // 1. Render Company Plans Grid in Office Customers Tab
       const gridEl = document.getElementById('company-membership-plans-grid');
       if (gridEl) {
         gridEl.innerHTML = state.membershipPlans.map(p => `
-          <div class="theme-subcard rounded-2xl p-3.5 space-y-2 border border-purple-500/40 flex flex-col justify-between">
-            <div>
-              <div class="flex items-start justify-between gap-2">
-                <div>
-                  <span class="px-2 py-0.5 rounded text-[9px] font-mono font-black bg-purple-500/20 text-purple-300 border border-purple-500/40">${p.billing_cycle.toUpperCase()}</span>
-                  <h4 class="text-sm font-black text-white mt-1">${p.name}</h4>
-                </div>
-                <div class="text-right font-mono">
-                  <div class="text-base font-black text-emerald-400">${Number(p.price).toFixed(2)}</div>
-                  <div class="text-[10px] theme-text-muted">per ${p.billing_cycle.toLowerCase()}</div>
-                </div>
-              </div>
-              <div class="text-[11px] font-mono text-slate-300 space-y-0.5 mt-2 pt-2 border-t border-slate-800">
-                <div>✅ <strong>${p.visits_included}</strong> Preventative Maintenance Visit(s)/Yr</div>
-                <div>🏷️ <strong>${p.discount_percent}% OFF</strong> Replacement Parts &amp; Accessories</div>
-                <div>${p.priority_service ? '⚡ Priority Storm Outage Dispatch' : '📋 Standard Dispatch Queue'}</div>
-                <div>${p.waive_diagnostic ? '🛡️ $0 Waived Emergency Diagnostic Callout' : '🔧 Standard Diagnostic Callout'}</div>
-              </div>
+          <div class="theme-subcard rounded-xl p-3 space-y-1.5 border border-purple-500/40">
+            <div class="flex items-center justify-between gap-2">
+              <strong class="text-xs font-black text-white">👑 ${p.name}</strong>
+              <span class="font-mono text-xs font-black text-emerald-400">${Number(p.price).toFixed(2)} / ${p.billing_cycle}</span>
             </div>
-            <div class="flex items-center justify-end gap-1.5 pt-2 border-t border-slate-800/80 font-mono text-[10px]">
-              <button type="button" onclick="editCompanyMembershipPlan('${p.id}')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 font-bold">✏️ Edit Tier</button>
-              <button type="button" onclick="deleteCompanyMembershipPlan('${p.id}')" class="px-2.5 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-500/30 font-bold">🗑️ Remove</button>
+            <div class="text-[11px] font-mono text-slate-300">
+              ${p.visits_included} Visits/Yr • ${p.discount_percent}% Parts Disc ${p.priority_service ? '• ⚡ Priority' : ''} ${p.waive_diagnostic ? '• 🛡️ $0 Diag' : ''}
+            </div>
+            <div class="flex justify-end gap-1.5 pt-1">
+              <button type="button" onclick="editCompanyMembershipPlan('${p.id}')" class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 font-mono text-[10px] font-bold">✏️ Edit</button>
+              <button type="button" onclick="deleteCompanyMembershipPlan('${p.id}')" class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 font-mono text-[10px] font-bold">🗑️ Delete</button>
             </div>
           </div>
         `).join('');
       }
 
-      // 2. Populate Plan Dropdown in CRM Customer Form
       const crmPlanSel = document.getElementById('crm-membership-plan');
       if (crmPlanSel) {
-        const currentVal = crmPlanSel.value;
+        const cur = crmPlanSel.value;
         crmPlanSel.innerHTML = '<option value="">-- No Membership Plan --</option>' +
-          state.membershipPlans.map(p =>
-            `<option value="${p.id}" ${String(currentVal) === String(p.id) ? 'selected' : ''}>${p.name} (${Number(p.price).toFixed(2)}/${p.billing_cycle} • ${p.visits_included} Visits • ${p.discount_percent}% Off)</option>`
-          ).join('');
+          state.membershipPlans.map(p => `<option value="${p.id}" ${String(cur) === String(p.id) ? 'selected' : ''}>${p.name} (${Number(p.price).toFixed(2)}/${p.billing_cycle})</option>`).join('');
       }
 
-      // 3. Update Active Member Counter Pill
       const activeCount = (state.customers || []).filter(c => c.membershipStatus === 'Active').length;
       const countPill = document.getElementById('membership-active-count-pill');
-      if (countPill) countPill.textContent = activeCount + ' Active Member' + (activeCount === 1 ? '' : 's');
+      if (countPill) countPill.textContent = activeCount + ' Active';
 
-      // 4. Inject Interactive Membership Controls into Rendered CRM Customer Cards
-      const crmList = document.getElementById('crm-customers-list');
-      if (crmList && Array.isArray(state.customers)) {
-        state.customers.forEach(c => {
-          const existingStrip = document.getElementById('crm-mem-strip-' + c.id);
-          if (existingStrip) existingStrip.remove();
-        });
-
-        const cards = crmList.querySelectorAll('.theme-subcard, .theme-card');
-        cards.forEach(card => {
-          const htmlText = card.innerHTML;
-          const matchedCustomer = state.customers.find(c => htmlText.includes(c.serial) || htmlText.includes(c.name));
-          if (!matchedCustomer || card.querySelector('.crm-membership-injected')) return;
-
-          const isAct = matchedCustomer.membershipStatus === 'Active';
-          const strip = document.createElement('div');
-          strip.id = 'crm-mem-strip-' + matchedCustomer.id;
-          strip.className = 'crm-membership-injected mt-2 pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px]';
-          strip.innerHTML = isAct ? `
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40 font-black">👑 ${matchedCustomer.membershipPlanName}</span>
-              <span class="text-slate-300">Visits: <strong class="text-amber-300">${matchedCustomer.visitsUsed || 0}/${matchedCustomer.visitsTotal || 1}</strong></span>
-              <span class="text-emerald-400 font-bold">${matchedCustomer.memberDiscount || 0}% Parts Disc</span>
-              <span class="text-slate-400">Renews: ${matchedCustomer.membershipRenewalDate || 'N/A'}</span>
-            </div>
-            <div class="flex items-center gap-1">
-              <button type="button" onclick="adjustCustomerMembershipVisit('${matchedCustomer.id}', -1)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300">−1</button>
-              <button type="button" onclick="adjustCustomerMembershipVisit('${matchedCustomer.id}', 1)" class="px-2 py-0.5 rounded bg-purple-500 hover:bg-purple-400 text-slate-950 font-black">+1 Visit Used</button>
-            </div>
-          ` : `
-            <span class="text-slate-400">👑 Membership: <strong>None</strong></span>
-            <button type="button" onclick="editCrmCustomer('${matchedCustomer.id}')" class="text-purple-300 underline font-bold">+ Assign Plan Tier</button>
-          `;
-          card.appendChild(strip);
-        });
+      // Tech Active Job Badge
+      const job = window.getActiveJob ? getActiveJob() : null;
+      if (job) {
+        const cust = getCustomerForJob(job);
+        const badge = document.getElementById('mobile-active-membership-badge');
+        const isAct = cust && cust.membershipStatus === 'Active';
+        if (badge) {
+          badge.textContent = isAct ? ('👑 ' + cust.membershipPlanName + ' (' + (cust.visitsUsed || 0) + '/' + (cust.visitsTotal || 1) + ')') : '👑 NO PLAN';
+          badge.className = isAct
+            ? 'cursor-pointer text-[10px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/50'
+            : 'cursor-pointer text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700';
+        }
       }
-
-      renderTechHeaderMembership();
     }
 
-    // Hook into existing Servio lifecycle functions without altering their core behavior
-    window.addEventListener('DOMContentLoaded', () => {
-      ensureMembershipState();
-
-      const origRenderOffice = window.renderOfficeConsole;
-      if (typeof origRenderOffice === 'function') {
-        window.renderOfficeConsole = function() {
-          origRenderOffice.apply(this, arguments);
-          renderMembershipBuilderAndBadges();
-        };
+    // Invoice Member Perks
+    function getActiveModalCustomerRecord() {
+      if (!window.state || !Array.isArray(state.customers)) return null;
+      const crmId = document.getElementById('inv-modal-crm-switcher')?.value || '';
+      if (crmId) {
+        const byId = state.customers.find(c => c.id === crmId);
+        if (byId) return byId;
       }
-
-      const origRenderHeader = window.renderActiveJobHeader;
-      if (typeof origRenderHeader === 'function') {
-        window.renderActiveJobHeader = function() {
-          origRenderHeader.apply(this, arguments);
-          renderTechHeaderMembership();
-        };
+      const custName = (document.getElementById('inv-modal-cust-name')?.value || '').trim().toLowerCase();
+      if (custName) {
+        const byName = state.customers.find(c => (c.name || '').toLowerCase() === custName);
+        if (byName) return byName;
       }
+      const jobId = document.getElementById('inv-modal-job-id')?.value || '';
+      const job = (state.jobs || []).find(j => j.id === jobId);
+      return job ? getCustomerForJob(job) : null;
+    }
 
-      const origEditCrm = window.editCrmCustomer;
-      if (typeof origEditCrm === 'function') {
-        window.editCrmCustomer = function(custId) {
-          origEditCrm.apply(this, arguments);
-          const cust = (state.customers || []).find(c => c.id === custId);
-          if (!cust) return;
-          renderMembershipBuilderAndBadges();
-          const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
-          setVal('crm-membership-plan', cust.membershipPlanId || '');
-          setVal('crm-membership-status', cust.membershipStatus || 'None');
-          setVal('crm-visits-used', cust.visitsUsed || 0);
-          setVal('crm-visits-total', cust.visitsTotal || 0);
-          setVal('crm-member-discount', cust.memberDiscount || 0);
-          setVal('crm-membership-renewal', cust.membershipRenewalDate || '');
-        };
-      }
+    window.toggleAutoApplyMemberPerks = function(checked) {
+      autoApplyMemberPerks = !!checked;
+      if (autoApplyMemberPerks) applyActiveCustomerMembershipPerksToModal(true);
+    };
 
-      const origResetCrm = window.resetCrmCustomerForm;
-      if (typeof origResetCrm === 'function') {
-        window.resetCrmCustomerForm = function() {
-          origResetCrm.apply(this, arguments);
-          handleCrmPlanDropdownChange('');
-        };
-      }
-
-      const origSaveCrm = window.saveCrmCustomer;
-      if (typeof origSaveCrm === 'function') {
-        window.saveCrmCustomer = async function(event) {
-          const planId = document.getElementById('crm-membership-plan')?.value || '';
-          const plan = (state.membershipPlans || []).find(p => String(p.id) === String(planId));
-          const status = document.getElementById('crm-membership-status')?.value || (plan ? 'Active' : 'None');
-          const visitsUsed = parseInt(document.getElementById('crm-visits-used')?.value) || 0;
-          const visitsTotal = parseInt(document.getElementById('crm-visits-total')?.value) || (plan ? plan.visits_included : 0);
-          const memberDiscount = parseInt(document.getElementById('crm-member-discount')?.value) || (plan ? plan.discount_percent : 0);
-          const renewalDate = document.getElementById('crm-membership-renewal')?.value || '';
-          const custName = document.getElementById('crm-name')?.value.trim();
-
-          origSaveCrm.apply(this, arguments);
-
-          const savedCust = (state.customers || []).find(c => c.name === custName);
-          if (savedCust) {
-            savedCust.membershipPlanId = plan ? plan.id : '';
-            savedCust.membershipPlanName = plan ? plan.name : 'None';
-            savedCust.membershipStatus = status;
-            savedCust.membershipRenewalDate = renewalDate;
-            savedCust.visitsUsed = visitsUsed;
-            savedCust.visitsTotal = visitsTotal;
-            savedCust.memberDiscount = memberDiscount;
-            savedCust.priorityService = plan ? !!plan.priority_service : false;
-            savedCust.waiveDiagnostic = plan ? !!plan.waive_diagnostic : false;
-
-            const client = getSupabaseClientInstance();
-            if (client) {
-              try {
-                await client.from('customers').update({
-                  membership_plan_name: savedCust.membershipPlanName,
-                  membership_status: savedCust.membershipStatus,
-                  membership_renewal_date: savedCust.membershipRenewalDate || null,
-                  visits_used: savedCust.visitsUsed,
-                  visits_total: savedCust.visitsTotal,
-                  member_discount: savedCust.memberDiscount
-                }).eq('name', savedCust.name);
-              } catch (e) {}
+    window.waiveModalDiagnosticFeeForMember = function() {
+      const cust = getActiveModalCustomerRecord();
+      const planName = (cust && cust.membershipPlanName) ? cust.membershipPlanName : 'Member';
+      const container = document.getElementById('inv-modal-line-items-container');
+      if (container) {
+        container.querySelectorAll('div, tr').forEach(row => {
+          const tInputs = row.querySelectorAll('input[type="text"]');
+          const nInputs = row.querySelectorAll('input[type="number"]');
+          tInputs.forEach(ti => {
+            if (/diag|callout/i.test(ti.value || '')) {
+              nInputs.forEach(ni => {
+                if (Number(ni.value) > 1) {
+                  ni.value = '0.00';
+                  ni.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+              });
             }
-            if (window.saveState) saveState();
-          }
-          renderMembershipBuilderAndBadges();
-        };
+          });
+        });
       }
+      if (typeof window.recalcModalInvoiceSummary === 'function') recalcModalInvoiceSummary();
+      if (window.showToast) showToast('🛡️ Waived Diagnostic Fee ($0.00) for ' + planName);
+    };
 
-      renderMembershipBuilderAndBadges();
-      syncMembershipPlansWithSupabase(false);
-    });
-  })();
-</script>
-
-<!-- ================= SERVIO_AUTH_GATE_V122_INSTALLED ================= -->
-<div id="servio-auth-gate-overlay" class="fixed inset-0 z-[200] bg-slate-950 flex items-center justify-center p-4 overflow-y-auto">
-  <div class="theme-card rounded-3xl max-w-md w-full p-6 space-y-5 border-2 border-amber-500/70 shadow-2xl my-auto">
-    <!-- Brand Header -->
-    <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
-      <div class="w-11 h-11 rounded-2xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-xl shadow-lg shrink-0">⚡</div>
-      <div>
-        <div class="flex items-center gap-2">
-          <h1 class="text-lg font-black text-white tracking-tight">Servio</h1>
-          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold">v1.22 Auth</span>
-        </div>
-        <p class="text-xs theme-text-muted">Field Service &amp; HQ Dispatch Portal</p>
-      </div>
-    </div>
-
-    <!-- Mode Tabs: Sign In vs Create Account -->
-    <div class="grid grid-cols-2 gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 font-mono text-xs">
-      <button type="button" id="ag-tab-signin" onclick="switchAuthGateMode('signin')" class="py-2 rounded-lg font-black bg-amber-500 text-slate-950 shadow">
-        🔐 Sign In
-      </button>
-      <button type="button" id="ag-tab-signup" onclick="switchAuthGateMode('signup')" class="py-2 rounded-lg font-bold text-slate-300 hover:text-white">
-        ➕ Create Account
-      </button>
-    </div>
-
-    <!-- Error / Status Banner -->
-    <div id="ag-status-msg" class="hidden rounded-xl p-3 text-xs font-mono border"></div>
-
-    <!-- Login / Sign-Up Form -->
-    <form onsubmit="handleAuthGateSubmit(event)" class="space-y-3 text-xs">
-      <div id="ag-signup-extra-fields" class="hidden space-y-3">
-        <div>
-          <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Full Name *</label>
-          <input id="ag-fullname" type="text" placeholder="e.g., Julie Ivester or Mike R." class="theme-input w-full rounded-xl px-3 py-2.5 font-bold text-xs" />
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Account Role *</label>
-            <select id="ag-role" onchange="toggleAuthTechPicker(this.value)" class="theme-input w-full rounded-xl px-2.5 py-2.5 font-bold text-xs text-amber-300">
-              <option value="admin">🖥️ Office Admin / HQ</option>
-              <option value="tech">📱 Field Technician</option>
-            </select>
-          </div>
-          <div id="ag-tech-picker-wrap" class="hidden">
-            <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Assigned Truck *</label>
-            <select id="ag-tech-id" class="theme-input w-full rounded-xl px-2.5 py-2.5 font-bold text-xs text-cyan-300">
-              <option value="tech-mike">Mike R. (Truck #14)</option>
-              <option value="tech-sarah">Sarah L. (Truck #08)</option>
-              <option value="tech-dave">Dave K. (Truck #21)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Work Email *</label>
-        <input id="ag-email" type="email" required placeholder="you@company.com" class="theme-input w-full rounded-xl px-3 py-2.5 font-mono text-xs" />
-      </div>
-
-      <div>
-        <label class="block text-[10px] font-mono uppercase theme-text-muted mb-1">Password *</label>
-        <input id="ag-password" type="password" required minlength="6" placeholder="••••••••" class="theme-input w-full rounded-xl px-3 py-2.5 font-mono text-xs" />
-      </div>
-
-      <button id="ag-submit-btn" type="submit" class="glove-btn w-full rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm py-3.5 shadow-xl">
-        🔐 Sign In to Servio
-      </button>
-    </form>
-
-    <!-- Quick Testing Bypass (For Instant Demo & Role Verification) -->
-    <div class="pt-3 border-t border-slate-800 space-y-2">
-      <div class="text-[10px] font-mono uppercase text-slate-400 text-center font-bold">⚡ Quick Role Preview (Instant Test Access)</div>
-      <div class="grid grid-cols-2 gap-2">
-        <button type="button" onclick="quickLoginRolePreview('admin', 'ALL', 'Office Admin')"
-          class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-mono text-[11px] font-bold">
-          🖥️ Preview Office HQ
-        </button>
-        <button type="button" onclick="quickLoginRolePreview('tech', 'tech-mike', 'Mike R. (Truck #14)')"
-          class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-mono text-[11px] font-bold">
-          📱 Preview Tech (#14)
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  (function() {
-    const AUTH_SESSION_KEY = 'servio_active_role_session_v122';
-    let authGateMode = 'signin';
-
-    function getSbClient() {
-      if (window.supabaseClient) return window.supabaseClient;
-      const url = document.getElementById('sb-cfg-url')?.value || 'https://oowfquqrhqshthkryueb.supabase.co';
-      const key = document.getElementById('sb-cfg-key')?.value || 'sb_publishable_KEAzhMN_puMXxhc3eamHYQ_Gwbdai3D';
-      if (window.supabase && window.supabase.createClient) {
-        window.supabaseClient = window.supabase.createClient(url, key);
-        return window.supabaseClient;
+    window.applyActiveCustomerMembershipPerksToModal = function(showFeedback) {
+      const bar = document.getElementById('inv-modal-membership-perks-bar');
+      const titleEl = document.getElementById('inv-modal-member-plan-title');
+      const subEl = document.getElementById('inv-modal-member-plan-sub');
+      const cust = getActiveModalCustomerRecord();
+      if (!cust || cust.membershipStatus !== 'Active') {
+        if (bar) bar.classList.add('hidden');
+        return;
       }
-      return null;
-    }
+      const discPct = Number(cust.memberDiscount || 0);
+      const waiveDiag = !!cust.waiveDiagnostic;
+      if (bar) bar.classList.remove('hidden');
+      if (titleEl) titleEl.textContent = '👑 ACTIVE MEMBER: ' + cust.membershipPlanName;
+      if (subEl) subEl.textContent = discPct + '% Member Discount' + (waiveDiag ? ' • $0 Waived Diag Callout' : '');
 
-    function populateAuthTechDropdown() {
-      const sel = document.getElementById('ag-tech-id');
-      if (!sel || !window.state || !Array.isArray(state.technicians)) return;
-      sel.innerHTML = state.technicians.map(t => `<option value="${t.id}">${t.label}</option>`).join('');
-    }
+      if ((autoApplyMemberPerks || showFeedback) && discPct > 0 && typeof window.setModalQuickDiscount === 'function') {
+        setModalQuickDiscount('PCT', discPct, '👑 ' + cust.membershipPlanName + ' (' + discPct + '% Off)');
+      }
+      if ((autoApplyMemberPerks || showFeedback) && waiveDiag) {
+        waiveModalDiagnosticFeeForMember();
+      }
+    };
 
+    // Auth Gate & Role Switcher
     window.switchAuthGateMode = function(mode) {
       authGateMode = mode;
       const extra = document.getElementById('ag-signup-extra-fields');
       const btnIn = document.getElementById('ag-tab-signin');
       const btnUp = document.getElementById('ag-tab-signup');
       const submitBtn = document.getElementById('ag-submit-btn');
-      populateAuthTechDropdown();
-
       if (mode === 'signup') {
         extra.classList.remove('hidden');
         btnUp.className = 'py-2 rounded-lg font-black bg-amber-500 text-slate-950 shadow';
@@ -18928,77 +18647,7 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
 
     window.toggleAuthTechPicker = function(role) {
       const wrap = document.getElementById('ag-tech-picker-wrap');
-      if (!wrap) return;
-      if (role === 'tech') wrap.classList.remove('hidden');
-      else wrap.classList.add('hidden');
-    };
-
-    function showAuthStatus(msg, isError) {
-      const box = document.getElementById('ag-status-msg');
-      if (!box) return;
-      box.classList.remove('hidden');
-      box.textContent = msg;
-      box.className = isError
-        ? 'rounded-xl p-3 text-xs font-mono border bg-rose-950/90 text-rose-200 border-rose-500'
-        : 'rounded-xl p-3 text-xs font-mono border bg-emerald-950/90 text-emerald-200 border-emerald-500';
-    }
-
-    window.handleAuthGateSubmit = async function(e) {
-      e.preventDefault();
-      const client = getSbClient();
-      if (!client) return showAuthStatus('Supabase client not initialized.', true);
-
-      const email = document.getElementById('ag-email').value.trim().toLowerCase();
-      const password = document.getElementById('ag-password').value;
-      const fullName = document.getElementById('ag-fullname')?.value.trim() || email.split('@')[0];
-      const selectedRole = document.getElementById('ag-role')?.value || 'admin';
-      const assignedTechId = selectedRole === 'tech' ? (document.getElementById('ag-tech-id')?.value || 'tech-mike') : 'ALL';
-
-      showAuthStatus(authGateMode === 'signup' ? 'Creating account in Supabase...' : 'Verifying credentials...', false);
-
-      try {
-        let userId = null;
-        if (authGateMode === 'signup') {
-          const { data, error } = await client.auth.signUp({ email, password });
-          if (error) throw error;
-          userId = data?.user?.id || null;
-
-          await client.from('user_profiles').upsert([{
-            user_id: userId,
-            email,
-            full_name: fullName,
-            role: selectedRole,
-            assigned_tech_id: assignedTechId
-          }], { onConflict: 'email' });
-
-          applyAuthenticatedSession({
-            email,
-            fullName,
-            role: selectedRole,
-            assignedTechId
-          });
-        } else {
-          const { data, error } = await client.auth.signInWithPassword({ email, password });
-          if (error) throw error;
-          userId = data?.user?.id || null;
-
-          // Fetch role profile from user_profiles table
-          const { data: prof } = await client
-            .from('user_profiles')
-            .select('*')
-            .eq('email', email)
-            .maybeSingle();
-
-          applyAuthenticatedSession({
-            email,
-            fullName: prof?.full_name || email.split('@')[0],
-            role: prof?.role || 'admin',
-            assignedTechId: prof?.assigned_tech_id || 'ALL'
-          });
-        }
-      } catch (err) {
-        showAuthStatus(err.message || 'Authentication failed. Check email/password.', true);
-      }
+      if (wrap) wrap.classList.toggle('hidden', role !== 'tech');
     };
 
     window.quickLoginRolePreview = function(role, assignedTechId, label) {
@@ -19007,10 +18656,46 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
         fullName: label,
         role,
         assignedTechId
-      });
+      }, true);
     };
 
-    function applyAuthenticatedSession(sessionObj) {
+    window.handleAuthGateSubmit = async function(e) {
+      e.preventDefault();
+      const client = getSbClient();
+      const email = document.getElementById('ag-email').value.trim().toLowerCase();
+      const password = document.getElementById('ag-password').value;
+      const fullName = document.getElementById('ag-fullname')?.value.trim() || email.split('@')[0];
+      const selectedRole = document.getElementById('ag-role')?.value || 'admin';
+      const assignedTechId = selectedRole === 'tech' ? (document.getElementById('ag-tech-id')?.value || 'tech-mike') : 'ALL';
+
+      try {
+        if (authGateMode === 'signup') {
+          const { data, error } = await client.auth.signUp({ email, password });
+          if (error) throw error;
+          await client.from('user_profiles').upsert([{ user_id: data?.user?.id || null, email, full_name: fullName, role: selectedRole, assigned_tech_id: assignedTechId }], { onConflict: 'email' });
+          applyAuthenticatedSession({ email, fullName, role: selectedRole, assignedTechId }, true);
+        } else {
+          const { data, error } = await client.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          const { data: prof } = await client.from('user_profiles').select('*').eq('email', email).maybeSingle();
+          applyAuthenticatedSession({
+            email,
+            fullName: prof?.full_name || email.split('@')[0],
+            role: prof?.role || 'admin',
+            assignedTechId: prof?.assigned_tech_id || 'ALL'
+          }, true);
+        }
+      } catch (err) {
+        const box = document.getElementById('ag-status-msg');
+        if (box) {
+          box.classList.remove('hidden');
+          box.className = 'rounded-xl p-3 text-xs font-mono border bg-rose-950/90 text-rose-200 border-rose-500';
+          box.textContent = err.message || 'Login failed';
+        }
+      }
+    };
+
+    function applyAuthenticatedSession(sessionObj, switchScreenNow) {
       localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(sessionObj));
       const gate = document.getElementById('servio-auth-gate-overlay');
       if (gate) gate.classList.add('hidden');
@@ -19019,277 +18704,83 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
       const techSel = document.getElementById('global-tech-selector');
 
       if (sessionObj.role === 'tech') {
-        // Lock field technicians to Tech Mode & their assigned truck
         if (officeBtn) officeBtn.classList.add('hidden');
-        if (window.switchAppMode) switchAppMode('tech');
         if (window.state) {
           state.selectedTechId = sessionObj.assignedTechId || 'tech-mike';
           state.vanStockTechId = sessionObj.assignedTechId || 'tech-mike';
-          const firstTechJob = (state.jobs || []).find(j => j.techId === state.selectedTechId);
-          if (firstTechJob) state.activeJobId = firstTechJob.id;
         }
         if (techSel) {
           techSel.value = sessionObj.assignedTechId || 'tech-mike';
           techSel.disabled = true;
         }
+        if (typeof window.switchAppMode === 'function') {
+          switchAppMode('tech');
+        }
       } else {
-        // Office Admin gets full access to both Office and Tech modes
+        // Admin role: ALWAYS unhide Office button and open Office mode when logging in
         if (officeBtn) officeBtn.classList.remove('hidden');
         if (techSel) techSel.disabled = false;
+        if (window.state) state.selectedTechId = 'ALL';
+        if (switchScreenNow && typeof window.switchAppMode === 'function') {
+          switchAppMode('office');
+        }
       }
 
       injectHeaderUserBadge(sessionObj);
       if (window.saveState) saveState();
-      if (window.showToast) {
+      if (switchScreenNow && window.showToast) {
         showToast('✅ Signed in as ' + sessionObj.fullName + ' (' + (sessionObj.role === 'admin' ? 'Office HQ' : 'Field Tech') + ')');
       }
     }
 
     function injectHeaderUserBadge(sessionObj) {
       let badge = document.getElementById('servio-header-user-pill');
-      const cloudBtn = document.querySelector('button[onclick="openSupabaseCloudModal()"]');
-      if (!badge && cloudBtn && cloudBtn.parentNode) {
+      const modeBtnOffice = document.getElementById('mode-btn-office');
+      if (!badge && modeBtnOffice && modeBtnOffice.parentElement && modeBtnOffice.parentElement.parentElement) {
         badge = document.createElement('button');
         badge.id = 'servio-header-user-pill';
         badge.type = 'button';
         badge.onclick = window.signOutServioUser;
-        badge.title = 'Tap to Sign Out / Switch User Role';
-        cloudBtn.parentNode.insertBefore(badge, cloudBtn);
+        modeBtnOffice.parentElement.parentElement.appendChild(badge);
       }
       if (badge) {
         const isTech = sessionObj.role === 'tech';
-        badge.className = 'px-2 py-1 rounded-lg text-[11px] font-mono font-extrabold flex items-center gap-1 whitespace-nowrap border ' +
+        badge.className = 'px-2 py-1 rounded-lg text-[11px] font-mono font-extrabold flex items-center gap-1 whitespace-nowrap border shrink-0 ' +
           (isTech ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40' : 'bg-purple-500/20 text-purple-300 border-purple-500/40');
-        badge.innerHTML = `<span>${isTech ? '👷' : '👑'}</span><span class="hidden sm:inline">${sessionObj.fullName}</span><span>• Exit</span>`;
+        badge.innerHTML = `<span>${isTech ? '👷' : '👑'}</span><span>Switch Role</span>`;
       }
     }
 
     window.signOutServioUser = async function() {
       localStorage.removeItem(AUTH_SESSION_KEY);
-      const client = getSbClient();
-      if (client) {
-        try { await client.auth.signOut(); } catch (e) {}
-      }
+      const officeBtn = document.getElementById('mode-btn-office');
+      if (officeBtn) officeBtn.classList.remove('hidden');
       const gate = document.getElementById('servio-auth-gate-overlay');
       if (gate) gate.classList.remove('hidden');
-      const statusBox = document.getElementById('ag-status-msg');
-      if (statusBox) statusBox.classList.add('hidden');
-      if (window.showToast) showToast('🔒 Signed out of Servio');
     };
 
     window.addEventListener('DOMContentLoaded', () => {
-      populateAuthTechDropdown();
-      const saved = localStorage.getItem(AUTH_SESSION_KEY);
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          if (parsed && parsed.role) {
-            applyAuthenticatedSession(parsed);
-          }
-        } catch (e) {}
-      }
-    });
-  })();
-</script>
+      ensureMembershipState();
 
-<!-- ================= SERVIO_MEMBER_INVOICE_PERKS_V123_INSTALLED ================= -->
-<script>
-  (function() {
-    let autoApplyMemberPerks = true;
-
-    function findPlanForCustomer(cust) {
-      if (!cust || !window.state || !Array.isArray(state.membershipPlans)) return null;
-      return state.membershipPlans.find(p =>
-        (cust.membershipPlanId && String(p.id) === String(cust.membershipPlanId)) ||
-        (cust.membershipPlanName && p.name.toLowerCase() === cust.membershipPlanName.toLowerCase())
-      ) || null;
-    }
-
-    function getActiveModalCustomerRecord() {
-      if (!window.state || !Array.isArray(state.customers)) return null;
-      const crmId = document.getElementById('inv-modal-crm-switcher')?.value || '';
-      if (crmId) {
-        const byId = state.customers.find(c => c.id === crmId);
-        if (byId) return byId;
-      }
-      const custName = (document.getElementById('inv-modal-cust-name')?.value || '').trim().toLowerCase();
-      if (custName) {
-        const byName = state.customers.find(c => (c.name || '').toLowerCase() === custName);
-        if (byName) return byName;
-      }
-      const jobId = document.getElementById('inv-modal-job-id')?.value || document.getElementById('inv-modal-job-switcher')?.value || '';
-      const job = (state.jobs || []).find(j => j.id === jobId);
-      if (job) {
-        return state.customers.find(c =>
-          (c.serial && job.serial && c.serial.toLowerCase() === job.serial.toLowerCase()) ||
-          (c.name && job.customer && c.name.toLowerCase() === job.customer.toLowerCase())
-        ) || null;
-      }
-      return null;
-    }
-
-    window.toggleAutoApplyMemberPerks = function(checked) {
-      autoApplyMemberPerks = !!checked;
-      if (autoApplyMemberPerks) {
-        applyActiveCustomerMembershipPerksToModal(true);
-      }
-    };
-
-    window.waiveModalDiagnosticFeeForMember = function() {
-      const cust = getActiveModalCustomerRecord();
-      const planName = (cust && cust.membershipPlanName && cust.membershipPlanName !== 'None') ? cust.membershipPlanName : 'Membership';
-      const container = document.getElementById('inv-modal-line-items-container');
-      let waivedCount = 0;
-
-      // Check inputs inside the modal line items container for Diagnostic rows
-      if (container) {
-        const rows = container.querySelectorAll('div, tr');
-        rows.forEach(row => {
-          const textInputs = row.querySelectorAll('input[type="text"]');
-          const numInputs = row.querySelectorAll('input[type="number"]');
-          textInputs.forEach(ti => {
-            if (/diag|callout|trip fee/i.test(ti.value || '')) {
-              numInputs.forEach(ni => {
-                if (Number(ni.value) > 0 && Number(ni.value) !== 1) {
-                  ni.value = '0.00';
-                  ni.dispatchEvent(new Event('input', { bubbles: true }));
-                  ni.dispatchEvent(new Event('change', { bubbles: true }));
-                  waivedCount++;
-                }
-              });
-              if (!ti.value.includes('(Waived')) {
-                ti.value = ti.value + ' (Waived - ' + planName + ')';
-                ti.dispatchEvent(new Event('input', { bubbles: true }));
-              }
-            }
-          });
-        });
+      const origRenderOffice = window.renderOfficeConsole;
+      if (typeof origRenderOffice === 'function') {
+        window.renderOfficeConsole = function() {
+          const res = origRenderOffice.apply(this, arguments);
+          renderMembershipBuilderAndBadges();
+          return res;
+        };
       }
 
-      if (typeof window.recalcModalInvoiceSummary === 'function') {
-        recalcModalInvoiceSummary();
-      }
-      if (window.showToast) {
-        showToast(waivedCount > 0 ? '🛡️ Waived Diagnostic Callout Fee ($0.00) for ' + planName + '!' : '🛡️ Diagnostic fee waiver active for ' + planName);
-      }
-    };
-
-    window.applyActiveCustomerMembershipPerksToModal = function(showFeedback) {
-      const bar = document.getElementById('inv-modal-membership-perks-bar');
-      const titleEl = document.getElementById('inv-modal-member-plan-title');
-      const subEl = document.getElementById('inv-modal-member-plan-sub');
-      const waiveBtn = document.getElementById('inv-modal-waive-diag-btn');
-
-      const cust = getActiveModalCustomerRecord();
-      const isActive = cust && cust.membershipStatus === 'Active';
-
-      if (!cust || !isActive) {
-        if (bar) bar.classList.add('hidden');
-        return;
+      const origRenderHeader = window.renderActiveJobHeader;
+      if (typeof origRenderHeader === 'function') {
+        window.renderActiveJobHeader = function() {
+          const res = origRenderHeader.apply(this, arguments);
+          renderMembershipBuilderAndBadges();
+          return res;
+        };
       }
 
-      const plan = findPlanForCustomer(cust);
-      const discPct = Number(cust.memberDiscount ?? (plan ? plan.discount_percent : 0));
-      const waiveDiag = !!(cust.waiveDiagnostic ?? (plan ? plan.waive_diagnostic : false));
-      const priority = !!(cust.priorityService ?? (plan ? plan.priority_service : true));
-
-      if (bar) bar.classList.remove('hidden');
-      if (titleEl) titleEl.textContent = '👑 ACTIVE MEMBER: ' + (cust.membershipPlanName || 'PM Contract') + ' (' + (cust.visitsUsed || 0) + '/' + (cust.visitsTotal || 1) + ' Visits Used)';
-      if (subEl) {
-        subEl.innerHTML = 'Perks: <span class="text-emerald-400">' + discPct + '% Discount</span>' +
-          (waiveDiag ? ' • <span class="text-cyan-300">🛡️ $0 Waived Diagnostic Fee</span>' : '') +
-          (priority ? ' • <span class="text-amber-300">⚡ Priority Dispatch</span>' : '');
-      }
-      if (waiveBtn) {
-        waiveBtn.style.display = waiveDiag ? 'inline-flex' : 'none';
-      }
-
-      if (!autoApplyMemberPerks && !showFeedback) return;
-
-      // Apply percentage discount to Modal Discount Controls
-      if (discPct > 0) {
-        const reason = '👑 ' + (cust.membershipPlanName || 'Member') + ' (' + discPct + '% Member Discount)';
-        if (typeof window.setModalQuickDiscount === 'function') {
-          setModalQuickDiscount('PCT', discPct, reason);
-        } else {
-          const typeEl = document.getElementById('inv-modal-disc-type');
-          const valEl = document.getElementById('inv-modal-disc-val');
-          const reasonEl = document.getElementById('inv-modal-disc-reason');
-          if (typeEl) typeEl.value = 'PCT';
-          if (valEl) valEl.value = discPct;
-          if (reasonEl) reasonEl.value = reason;
-          if (typeof window.recalcModalInvoiceSummary === 'function') recalcModalInvoiceSummary();
-        }
-      }
-
-      if (waiveDiag) {
-        waiveModalDiagnosticFeeForMember();
-      }
-
-      if (showFeedback && window.showToast) {
-        showToast('👑 Applied ' + (cust.membershipPlanName || 'Member') + ' perks (' + discPct + '% off' + (waiveDiag ? ' + $0 Diag' : '') + ')');
-      }
-    };
-
-    // Office Dispatch Form Member Perks Helper
-    let lastOfficePresetType = '';
-    window.applyOfficeDispatchMemberPerks = function(showFeedback) {
-      const custId = document.getElementById('of-customer-select')?.value || '';
-      const custName = (document.getElementById('of-customer')?.value || '').trim().toLowerCase();
-      const strip = document.getElementById('of-inv-member-perks-strip');
-      const stripText = document.getElementById('of-inv-member-perks-text');
-
-      if (!window.state || !Array.isArray(state.customers)) return;
-      const cust = state.customers.find(c => c.id === custId || (custName && (c.name || '').toLowerCase() === custName));
-      const isActive = cust && cust.membershipStatus === 'Active';
-
-      if (!cust || !isActive) {
-        if (strip) strip.classList.add('hidden');
-        return;
-      }
-
-      const plan = findPlanForCustomer(cust);
-      const discPct = Number(cust.memberDiscount ?? (plan ? plan.discount_percent : 0));
-      const waiveDiag = !!(cust.waiveDiagnostic ?? (plan ? plan.waive_diagnostic : false));
-
-      if (strip) strip.classList.remove('hidden');
-      if (stripText) {
-        stripText.textContent = '👑 ' + cust.membershipPlanName + ': ' + discPct + '% Parts Disc' + (waiveDiag ? ' • $0 Diag Callout' : '');
-      }
-
-      const partsEl = document.getElementById('of-inv-parts');
-      const laborEl = document.getElementById('of-inv-labor');
-      const notesEl = document.getElementById('of-inv-notes');
-
-      if (partsEl && discPct > 0) {
-        const rawParts = parseFloat(partsEl.getAttribute('data-base-parts') || partsEl.value) || 0;
-        partsEl.setAttribute('data-base-parts', rawParts);
-        const discounted = (rawParts * (1 - discPct / 100)).toFixed(2);
-        partsEl.value = discounted;
-      }
-
-      if (laborEl && waiveDiag && lastOfficePresetType === 'diag') {
-        laborEl.value = '0.00';
-      }
-
-      if (notesEl) {
-        const prefix = '[👑 ' + cust.membershipPlanName + ': ' + discPct + '% Parts Disc' + (waiveDiag ? ', Waived Diag Fee' : '') + '] ';
-        if (!notesEl.value.includes('👑')) {
-          notesEl.value = prefix + notesEl.value;
-        }
-      }
-
-      if (typeof window.recalcOfficeFormInvoicePreview === 'function') {
-        recalcOfficeFormInvoicePreview();
-      }
-      if (showFeedback && window.showToast) {
-        showToast('👑 Applied ' + cust.membershipPlanName + ' pricing to Work Order!');
-      }
-    };
-
-    window.addEventListener('DOMContentLoaded', () => {
-      // Wrap Estimate & Invoice Modal functions so perks auto-apply on open/switch
-      ['openCreateEstimateModal', 'openUniversalNewEstimateStudio', 'handleModalJobSwitcherChange', 'handleModalCrmCustomerSelect', 'handleModalCustomerNameInput'].forEach(fnName => {
+      ['openCreateEstimateModal', 'openUniversalNewEstimateStudio', 'handleModalJobSwitcherChange', 'handleModalCrmCustomerSelect'].forEach(fnName => {
         const origFn = window[fnName];
         if (typeof origFn === 'function') {
           window[fnName] = function() {
@@ -19300,132 +18791,15 @@ alter table public.garage_inventory add column if not exists truck_qty integer d
         }
       });
 
-      const origModalPreset = window.applyModalInvoicePreset;
-      if (typeof origModalPreset === 'function') {
-        window.applyModalInvoicePreset = function(presetType) {
-          const res = origModalPreset.apply(this, arguments);
-          setTimeout(() => {
-            applyActiveCustomerMembershipPerksToModal(false);
-            if (presetType === 'diag') {
-              const cust = getActiveModalCustomerRecord();
-              const plan = findPlanForCustomer(cust);
-              const waiveDiag = cust && cust.membershipStatus === 'Active' && !!(cust.waiveDiagnostic ?? (plan ? plan.waive_diagnostic : false));
-              if (waiveDiag) waiveModalDiagnosticFeeForMember();
-            }
-          }, 40);
-          return res;
-        };
-      }
+      renderMembershipBuilderAndBadges();
+      syncMembershipPlansWithSupabase(false);
 
-      const origOfficeCustSelect = window.handleOfficeCustomerSelect;
-      if (typeof origOfficeCustSelect === 'function') {
-        window.handleOfficeCustomerSelect = function(custId) {
-          const res = origOfficeCustSelect.apply(this, arguments);
-          const partsEl = document.getElementById('of-inv-parts');
-          if (partsEl) partsEl.removeAttribute('data-base-parts');
-          setTimeout(() => applyOfficeDispatchMemberPerks(true), 40);
-          return res;
-        };
-      }
-
-      const origOfficePreset = window.applyOfficeFormInvoicePreset;
-      if (typeof origOfficePreset === 'function') {
-        window.applyOfficeFormInvoicePreset = function(presetType) {
-          lastOfficePresetType = presetType;
-          const res = origOfficePreset.apply(this, arguments);
-          const partsEl = document.getElementById('of-inv-parts');
-          if (partsEl) partsEl.setAttribute('data-base-parts', partsEl.value);
-          setTimeout(() => applyOfficeDispatchMemberPerks(false), 40);
-          return res;
-        };
-      }
-    });
-  })();
-</script>
-<!-- ================= SERVIO_UI_SYNC_FIX_V125 ================= -->
-<script>
-  (function() {
-    // 1. Place the Company Membership Plan Builder INSIDE the Add/Edit Customer card
-    //    so #office-subtab-customers has its exact original 2-card structure:
-    //    Child 0 = Add/Edit Customer (+ Membership Plan Builder)
-    //    Child 1 = Saved Customers Directory
-    function restoreTwoCardCustomerStructure() {
-      const custTab = document.getElementById('office-subtab-customers');
-      if (!custTab) return;
-
-      const addEditCard = document.getElementById('crm-form-title')?.closest('.theme-card');
-      const directoryCard = document.getElementById('crm-customers-list')?.closest('.theme-card');
-      const planBuilderCard = document.getElementById('company-membership-plans-grid')?.closest('.theme-card');
-
-      if (!addEditCard || !directoryCard) return;
-
-      // Unwrap #crm-left-add-edit-pane if created by earlier script
-      const oldWrapper = document.getElementById('crm-left-add-edit-pane');
-      if (oldWrapper) {
-        custTab.insertBefore(addEditCard, oldWrapper);
-        if (planBuilderCard) addEditCard.appendChild(planBuilderCard);
-        oldWrapper.remove();
-      }
-
-      // Ensure addEditCard has its original lg:col-span-5 class and sits as Child 0
-      addEditCard.classList.add('lg:col-span-5');
-      if (custTab.children[0] !== addEditCard) {
-        custTab.insertBefore(addEditCard, custTab.firstChild);
-      }
-
-      // Nest the Plan Builder neatly inside the bottom of the Add/Edit Customer card
-      if (planBuilderCard && planBuilderCard.parentElement !== addEditCard) {
-        planBuilderCard.classList.remove('lg:col-span-12', 'theme-card', 'rounded-3xl', 'shadow-xl');
-        planBuilderCard.classList.add('theme-subcard', 'rounded-2xl', 'mt-6', 'pt-4');
-        const plansGrid = document.getElementById('company-membership-plans-grid');
-        if (plansGrid) plansGrid.className = 'grid grid-cols-1 gap-3';
-        addEditCard.appendChild(planBuilderCard);
-      }
-
-      // Ensure directoryCard sits as Child 1
-      if (custTab.children[1] !== directoryCard) {
-        custTab.appendChild(directoryCard);
-      }
-    }
-
-    // 2. Keep the Role Switcher / Exit button right next to the Tech/Office toggle on the left
-    //    so it is always visible on mobile screens without horizontal scrolling
-    function pinRoleSwitcherNextToModeButtons() {
-      const userPill = document.getElementById('servio-header-user-pill');
-      const techBtn = document.getElementById('mode-btn-tech');
-      if (userPill && techBtn && techBtn.parentElement && techBtn.parentElement.parentElement) {
-        const modeGroupParent = techBtn.parentElement.parentElement;
-        if (userPill.parentElement !== modeGroupParent) {
-          modeGroupParent.appendChild(userPill);
-        }
-      }
-    }
-
-    // 3. Make the Reset button also clear any locked Tech Preview role
-    const origReset = window.resetDemoData;
-    if (typeof origReset === 'function') {
-      window.resetDemoData = function() {
-        localStorage.removeItem('servio_active_role_session_v122');
-        const officeBtn = document.getElementById('mode-btn-office');
-        if (officeBtn) officeBtn.classList.remove('hidden');
-        const techSel = document.getElementById('global-tech-selector');
-        if (techSel) techSel.disabled = false;
-        return origReset.apply(this, arguments);
-      };
-    }
-
-    restoreTwoCardCustomerStructure();
-
-    window.addEventListener('DOMContentLoaded', () => {
-      restoreTwoCardCustomerStructure();
-      setTimeout(pinRoleSwitcherNextToModeButtons, 100);
-
-      const origRenderOffice = window.renderOfficeConsole;
-      if (typeof origRenderOffice === 'function') {
-        window.renderOfficeConsole = function() {
-          restoreTwoCardCustomerStructure();
-          return origRenderOffice.apply(this, arguments);
-        };
+      const saved = localStorage.getItem(AUTH_SESSION_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.role) applyAuthenticatedSession(parsed, false);
+        } catch (e) {}
       }
     });
   })();

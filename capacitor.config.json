@@ -3,7 +3,7 @@
   "appName": "Servio",
   "webDir": "www",
   "server": {
-    "url": "https://supportserviohq.github.io/servio-mobile/www/",
+    "url": "https://supportserviohq.github.io/servio-mobile/",
     "cleartext": true,
     "androidScheme": "https",
     "iosScheme": "capacitor"
